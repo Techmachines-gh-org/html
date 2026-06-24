@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+.topbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px;
+    align-items: center;
+    color: black;
+   background-color: rgba(219, 219, 219, 0.986);
+   text-align: center;
+    font-family: "Inter", sans-serif;
+    height:45px;
+}
+.about{
+    text-decoration: none;
+    color:black
+}
+.othertext{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10cap;
+    border-radius: 10px;
+    width: 20%;
+    align-items: center;
+    color:black;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+}
+.signin{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 100px;
+    width: 20%;
+    height: 30px;
+    align-items: center;
+    background-color: rgb(0, 153, 255);
+    color:rgb(255, 255, 255);
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    border: none;
+}
+.download{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 100px;
+    width: 250px;
+    height: 55px;
+    align-items: center;
+    background-color: rgb(0, 153, 255);
+    color:rgb(255, 255, 255);
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    border: none;
+}
+.homepage{
+    display: flex;
+    font-family: "Inter", sans-serif;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5cap;
+    align-items: center;
+    size:100%;
+    color:black;
+    text-align: center;
+    margin-top: 60px;
+}
+/*.app{
+    align-self: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5cap;
+    align-items: center;
+    height: 1000px;
+    color:black;
+    text-align: center;
+    font-family: "Instrument Sans", sans-serif;
+    margin:200px;
+}
+*/
+.section{
+    display: flex;
+    justify-content: space-between;
+    height: 600px;
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 5cap;
+    align-items: center;
+    color:rgb(0, 0, 0);
+    background-color: rgb(218, 218, 218);
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    margin:20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.title{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    height: 600px;
+    width: 600px;
+    overflow:hidden;
+    border-radius: 5cap;
+}
+.description{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    width: 600px;
+    overflow:hidden;
+    border-radius: 5cap;
+}
+.waitingfor{
+    align-self: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5cap;
+    align-items: center;
+    color:black;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+}
