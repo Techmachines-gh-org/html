@@ -2,7 +2,7 @@
 .topbar{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     border-radius: 10px;
     align-items: center;
     color: black;
@@ -11,7 +11,7 @@
     font-family: "Inter", sans-serif;
     height:45px;
 }
-.about{
+.link{
     text-decoration: none;
     color:black
 }
@@ -27,27 +27,13 @@
     text-align: center;
     font-family: "Inter", sans-serif;
 }
-.signin{
+.button{
     display: flex;
     flex-direction: row;
     justify-content: center;
     border-radius: 100px;
     width: 20%;
     height: 30px;
-    align-items: center;
-    background-color: rgb(0, 153, 255);
-    color:rgb(255, 255, 255);
-    text-align: center;
-    font-family: "Inter", sans-serif;
-    border: none;
-}
-.download{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 100px;
-    width: 250px;
-    height: 55px;
     align-items: center;
     background-color: rgb(0, 153, 255);
     color:rgb(255, 255, 255);
@@ -128,4 +114,46 @@
     color:black;
     text-align: center;
     font-family: "Inter", sans-serif;
+}
+.loginform{
+    display: flex;
+    font-family: "Inter", sans-serif;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5cap;
+    align-items: center;
+    size:100%;
+    color:black;
+    text-align: center;
+    margin-top: 60px;
+}
+
+/*.app{
+    align-self: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5cap;
+    align-items: center;
+    height: 1000px;
+    color:black;
+    text-align: center;
+    font-family: "Instrument Sans", sans-serif;
+    margin:200px;
+}
+*/
+.accountcreationform{
+    display: flex;
+    font-family: "Inter", sans-serif;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5cap;
+    align-items: center;
+    size:100%;
+    color:black;
+    text-align: center;
+    margin-top: 60px;
+}
+@media (max-width: 700px){
+    
 }
