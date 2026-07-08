@@ -14,26 +14,28 @@
         </div>
     </head>
     <body>
-        <div class="loginform">
+        <div id="authmessage"></div>
+        <div id="loginform">
                 <h1>Sign In your account</h1>
                 <p>Sign in your account to get access to personalized services to you!</p>
                 <p>Email</p>
-                <input type="text" class="logininput" placeholder="required*">
+                <input type="text" id="email" placeholder="required*">
                 <p>Password</p>
-                <input type="password" class="logininput" placeholder="required*">
-                <button class="button" style="width: 150px; height: 50px;" >Login</button>
-                <p>Don't have an account? <span class="accountcreation">Create an account!</span></p>
+                <input type="password" id="password" placeholder="required*">
+                <button class="button" id="signin" style="width: 150px; height: 50px;" >Login</button>
+                <p>Don't have an account? <span id="accountcreation">Create an account!</span></p>
         </div>
-        <div class="accountcreationform">
+        <div id="accountcreationform">
                 <h1>Create Account</h1>
                 <p>Full name</p>
-                <input type="text" class="logininput" placeholder="required*">
+                <input type="text" id="fullname" placeholder="required*">
                 <p>Email</p>
-                <input type="text" class="logininput" placeholder="required*">
+                <input type="text" id="createemail" placeholder="required*">
                 <p>Password</p>
-                <input type="password" class="logininput" placeholder="required*">
-                <button class="button" style="width: 150px; height: 50px;">Create Account</button>
-                <p>Already have an account? <span class="accountcreation">Login!</span></p>
+                <input type="password" id="createpassword" placeholder="required*">
+                <button class="button" id="createaccount" style="width: 150px; height: 50px;">Create Account</button>
+                <p>Already have an account? <span id="showloginform">Login!</span></p>
         </div>
+        <script src="../script.js"></script>
     </body>
 </html>

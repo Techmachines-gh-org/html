@@ -28,18 +28,39 @@
     font-family: "Inter", sans-serif;
 }
 .button{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 100px;
-    width: 20%;
-    height: 30px;
-    align-items: center;
-    background-color: rgb(0, 153, 255);
-    color:rgb(255, 255, 255);
-    text-align: center;
-    font-family: "Inter", sans-serif;
-    border: none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:none;
+    border-radius:100px;
+
+    background:#0099ff;
+    color:white;
+
+    font-family:"Inter", sans-serif;
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:
+        background-color .2s,
+        transform .15s,
+        opacity .2s;
+}
+
+.button:hover{
+    background:#0088e6;
+}
+
+.button:active{
+    transform:scale(.97);
+}
+
+.button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
 }
 .homepage{
     display: flex;
@@ -115,7 +136,7 @@
     text-align: center;
     font-family: "Inter", sans-serif;
 }
-.loginform{
+#loginform{
     display: flex;
     font-family: "Inter", sans-serif;
     flex-direction: column;
@@ -142,8 +163,8 @@
     margin:200px;
 }
 */
-.accountcreationform{
-    display: flex;
+#accountcreationform{
+    display: none;
     font-family: "Inter", sans-serif;
     flex-direction: column;
     justify-content: center;
@@ -154,6 +175,1083 @@
     text-align: center;
     margin-top: 60px;
 }
-@media (max-width: 700px){
-    
+#accountcreation,
+#showloginform{
+
+    color:#0099ff;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+#accountcreation:hover,
+#showloginform:hover{
+
+    text-decoration:underline;
+
+}
+#authmessage{
+
+    display:none;
+
+    align-items:center;
+
+    gap:14px;
+
+    width:520px;
+
+    max-width:90%;
+
+    margin:25px auto 0;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    background:rgba(220,53,69,.12);
+
+    border:1px solid rgba(220,53,69,.30);
+
+    color:#ffffff;
+
+    font-family:"Inter", sans-serif;
+
+    font-size:15px;
+
+}
+#authmessage svg{
+
+    flex-shrink:0;
+
+    width:22px;
+
+    height:22px;
+
+}
+.loading{
+
+    opacity:.65;
+
+    pointer-events:none;
+
+}
+.fade-in{
+
+    animation:fadeIn .25s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+input{
+
+    width:320px;
+    height:45px;
+
+    padding:0 15px;
+
+    border:1px solid #d6d6d6;
+    border-radius:12px;
+
+    font-size:15px;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s;
+
+}
+
+input:focus{
+
+    outline:none;
+
+    border-color:#0099ff;
+
+    box-shadow:0 0 0 4px rgba(0,153,255,.15);
+
+}
+/* ==========================
+   Hide Mobile Navigation
+   (Desktop)
+   ========================== */
+
+.hamburger{
+
+    display:none;
+
+}
+
+.mobilemenu{
+
+    display:none;
+
+}
+/* =====================================
+   Account Settings Page
+===================================== */
+
+
+/* =====================================
+   Account Settings
+===================================== */
+
+.settingspage{
+
+    display:flex;
+
+    width:100%;
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+    background:none;
+
+    border-radius:0;
+
+    overflow:visible;
+
+    font-family:"Inter",sans-serif;
+
+}
+
+/* Sidebar */
+
+.settingssidebar{
+
+    width:240px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    padding:20px;
+
+    box-sizing:border-box;
+
+    border-right:1px solid #e5e5e5;
+
+}
+
+.settingstab{
+
+    border:none;
+
+    background:none;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    text-align:left;
+
+    font-size:16px;
+
+    font-family:"Inter",sans-serif;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.settingstab:hover{
+
+    background:#dddddd;
+
+}
+
+.settingstab.active{
+
+    background:#0099ff;
+
+    color:white;
+
+}
+
+/* Right panel */
+
+.settingscontent{
+
+    flex:1;
+
+    padding:35px 45px;
+
+    box-sizing:border-box;
+
+    background:none;
+
+}
+
+.settingscontent h1{
+
+    font-size:32px;
+
+    margin-bottom:25px;
+
+}
+
+.settingscontent h2{
+
+    margin-top:30px;
+
+}
+
+.settingscontent p{
+
+    font-size:16px;
+
+}
+
+.settingscontent hr{
+
+    border:none;
+
+    height:1px;
+
+    background:#d5d5d5;
+
+    margin:30px 0;
+
+}
+
+/* Inputs */
+
+.settingscontent input{
+
+    width:350px;
+
+    max-width:100%;
+
+    height:45px;
+
+    margin:8px 0;
+
+    padding:0 15px;
+
+    border-radius:12px;
+
+    border:1px solid #ccc;
+
+    font-family:"Inter",sans-serif;
+
+    font-size:15px;
+
+    transition:border-color .2s, box-shadow .2s;
+
+}
+
+.settingscontent input:focus{
+
+    outline:none;
+
+    border-color:#0099ff;
+
+    box-shadow:0 0 0 4px rgba(0,153,255,.15);
+
+}
+
+/* Buttons */
+
+.settingscontent .button{
+
+    margin-top:12px;
+
+}
+
+/* Danger Button */
+
+.deletebutton,
+#deleteaccount{
+
+    background:#dc3545;
+
+}
+
+.deletebutton:hover,
+#deleteaccount:hover{
+
+    background:#bb2d3b;
+
+}
+
+/* Message Banner */
+
+#authmessage{
+
+    animation:fadeIn .25s ease;
+
+}
+/* Hidden by default */
+.popup{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.45);
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+/* Visible popup */
+.popup.show{
+
+    display:flex;
+
+}
+
+/* Popup card */
+
+.popupcard{
+
+    width:450px;
+    max-width:90%;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-sizing:border-box;
+
+    font-family:"Inter",sans-serif;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+
+    animation:popupOpen .18s ease;
+
+}
+
+.popupcard h2{
+
+    margin-top:0;
+
+}
+
+.popupcard input{
+
+    width:100%;
+
+    margin:10px 0 20px;
+
+}
+
+.popupbuttons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:15px;
+
+}
+
+.secondarybutton{
+
+    background:#d9d9d9;
+    color:black;
+
+}
+
+.secondarybutton:hover{
+
+    background:#c8c8c8;
+
+}
+
+@keyframes popupOpen{
+
+    from{
+
+        opacity:0;
+        transform:scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+
+
+/* =====================================
+   Dark Mode
+===================================== */
+
+body{
+
+    background:#ffffff;
+    color:#000000;
+
+    transition:
+        background .3s,
+        color .3s;
+
+}
+
+body.dark{
+
+    background:#101010;
+    color:#ffffff;
+
+}
+
+/* Top Bar */
+
+body.dark .topbar{
+
+    background:#1b1b1b;
+    color:white;
+
+}
+
+body.dark .topbar h1{
+
+    color:white;
+
+}
+
+body.dark .othertext p,
+body.dark .othertext a{
+
+    color:white;
+
+}
+
+/* Sidebar */
+
+body.dark .settingssidebar{
+
+    background:#181818;
+
+}
+
+body.dark .settingssidebar button{
+
+    color:white;
+
+}
+
+body.dark .settingssidebar button:hover{
+
+    background:#262626;
+
+}
+
+body.dark .settingssidebar button.active{
+
+    background:#0099ff;
+
+    color:white;
+
+}
+
+/* Main Settings */
+
+body.dark #accountsettings{
+
+    background:transparent;
+
+    color:white;
+
+}
+
+body.dark #accountsettings h1,
+body.dark #accountsettings h2,
+body.dark #accountsettings h3,
+body.dark #accountsettings p,
+body.dark #accountsettings span{
+
+    color:white;
+
+}
+
+body.dark #accountsettings hr{
+
+    background:#333;
+
+}
+
+/* Inputs */
+
+body.dark input{
+
+    background:#1f1f1f;
+
+    color:white;
+
+    border:1px solid #444;
+
+}
+
+body.dark input::placeholder{
+
+    color:#9c9c9c;
+
+}
+
+body.dark input:focus{
+
+    border-color:#0099ff;
+
+    box-shadow:0 0 0 4px rgba(0,153,255,.15);
+
+}
+
+/* Buttons */
+
+body.dark .button{
+
+    background:#0099ff;
+
+    color:white;
+
+}
+
+body.dark .button:hover{
+
+    background:#0085e0;
+
+}
+
+body.dark #deleteaccount{
+
+    background:#dc3545;
+
+}
+
+body.dark #deleteaccount:hover{
+
+    background:#bb2d3b;
+
+}
+
+/* Auth Message */
+
+body.dark #authmessage{
+
+    background:rgba(220,53,69,.15);
+
+    border:1px solid rgba(220,53,69,.35);
+
+    color:white;
+
+}
+
+/* Popup */
+
+body.dark .popupoverlay{
+
+    background:rgba(0,0,0,.65);
+
+}
+
+body.dark .popup{
+
+    background:#1b1b1b;
+
+    color:white;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+
+}
+
+body.dark .popup h2{
+
+    color:white;
+
+}
+
+body.dark .popup p{
+
+    color:#d0d0d0;
+
+}
+
+body.dark .popup hr{
+
+    background:#333;
+
+}
+
+body.dark .popup input{
+
+    background:#242424;
+
+    color:white;
+
+    border:1px solid #444;
+
+}
+
+body.dark .popup input::placeholder{
+
+    color:#999;
+
+}
+
+body.dark .popup .cancel{
+
+    background:#303030;
+
+    color:white;
+
+}
+
+body.dark .popup .cancel:hover{
+
+    background:#3c3c3c;
+
+}
+
+body.dark .popup .danger{
+
+    background:#dc3545;
+
+}
+
+body.dark .popup .danger:hover{
+
+    background:#bb2d3b;
+
+}
+
+
+
+/* =====================================
+   Mobile / Small Screens
+===================================== */
+
+
+/* =====================================
+   Mobile / Small Screens
+===================================== */
+
+@media(max-width:700px){
+
+
+    /* Account Settings */
+
+    #accountsettings{
+
+        width:95%;
+
+        padding:25px;
+
+        border-radius:25px;
+
+    }
+
+
+    #accountsettings h1{
+
+        font-size:26px;
+
+    }
+
+
+    #accountsettings input{
+
+        width:90%;
+
+    }
+
+
+    #accountsettings .button{
+
+        width:90% !important;
+
+    }
+
+
+
+    /* ==========================
+       Top Bar
+    ========================== */
+
+
+    .topbar{
+
+        justify-content:space-between;
+
+        padding:0 16px;
+
+        height:60px;
+
+    }
+
+
+    .topbar h1{
+
+        font-size:20px;
+
+        margin:0;
+
+    }
+
+
+    .logo{
+
+        width:45px;
+
+        height:45px;
+
+    }
+
+
+
+    /* Hide desktop navigation */
+
+    .othertext{
+
+        display:none;
+
+    }
+
+
+
+    /* ==========================
+       Hamburger
+    ========================== */
+
+
+    .hamburger{
+
+        display:flex;
+
+        flex-direction:column;
+
+        justify-content:center;
+
+        gap:5px;
+
+        cursor:pointer;
+
+        width:35px;
+
+        height:35px;
+
+    }
+
+
+    .hamburger span{
+
+        width:26px;
+
+        height:3px;
+
+        background:#000;
+
+        border-radius:999px;
+
+        transition:.25s;
+
+    }
+
+
+
+    /* ==========================
+       Mobile Menu
+    ========================== */
+
+
+    .mobilemenu{
+
+        position:fixed;
+
+        top:0;
+
+        right:-260px;
+
+        width:250px;
+
+        height:100vh;
+
+        background:white;
+
+        display:flex;
+
+        flex-direction:column;
+
+        padding:80px 25px;
+
+        gap:22px;
+
+        box-shadow:-4px 0 18px rgba(0,0,0,.12);
+
+        transition:right .25s ease;
+
+        z-index:999;
+
+    }
+
+
+    .mobilemenu.open{
+
+        right:0;
+
+    }
+
+
+
+    .mobilemenu a,
+    .mobilemenu p{
+
+        margin:0;
+
+        font-size:17px;
+
+        cursor:pointer;
+
+        color:black;
+
+        text-decoration:none;
+
+    }
+
+
+
+    /* ==========================
+       Forms
+    ========================== */
+
+
+    #loginform,
+    #accountcreationform{
+
+        width:100%;
+
+        padding:20px;
+
+        box-sizing:border-box;
+
+        margin-top:35px;
+
+    }
+
+
+    #loginform h1,
+    #accountcreationform h1{
+
+        font-size:30px;
+
+        text-align:center;
+
+    }
+
+
+    #loginform p,
+    #accountcreationform p{
+
+        text-align:center;
+
+    }
+
+
+
+    input{
+
+        width:100%;
+
+        max-width:400px;
+
+    }
+
+
+
+    .button{
+
+        width:100% !important;
+
+        max-width:250px;
+
+        height:48px !important;
+
+    }
+
+
+
+    #authmessage{
+
+        width:calc(100% - 30px);
+
+        margin:20px auto;
+
+        font-size:14px;
+
+    }
+
+
+
+    /* ==========================
+       Homepage
+    ========================== */
+
+
+    .homepage{
+
+        padding:20px;
+
+    }
+
+
+
+    .section{
+
+        flex-direction:column;
+
+        width:95%;
+
+        height:auto;
+
+        gap:25px;
+
+        padding:20px;
+
+    }
+
+
+
+    .title,
+    .description{
+
+        width:100%;
+
+        height:auto;
+
+    }
+
+
+
+    /* Hide images on mobile */
+
+    .section img{
+
+        display:none;
+
+    }
+
+}
+
+
+
+
+/* =====================================
+   Small Landscape Displays
+   (Cars / IoT screens)
+===================================== */
+
+
+@media(max-height:500px) and (orientation:landscape){
+
+
+    .homepage{
+
+        display:flex;
+
+        flex-direction:row;
+
+        width:100vw;
+
+        height:100vh;
+
+        overflow-x:auto;
+
+        overflow-y:hidden;
+
+        scroll-snap-type:x mandatory;
+
+        gap:0;
+
+        margin:0;
+
+        padding:0;
+
+    }
+
+
+
+    .section{
+
+        flex:none;
+
+        width:100vw;
+
+        height:100vh;
+
+        scroll-snap-align:start;
+
+        background:none;
+
+        border-radius:0;
+
+        box-shadow:none;
+
+        margin:0;
+
+        padding:30px;
+
+    }
+
+
+
+    .section img{
+
+        display:none;
+
+    }
+
+
+
+    .section h1{
+
+        font-size:24px;
+
+    }
+
+
+    .section p{
+
+        font-size:14px;
+
+    }
+
 }

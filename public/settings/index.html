@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Account Settings</title>
+
+    <link rel="stylesheet" href="../styles.css">
+
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+
+    <div class="topbar">
+
+        <img
+            class="logo"
+            src="../assets/logo.png"
+            alt="Logo"
+            width="70"
+            height="70">
+
+        <h1>Settings</h1>
+
+    </div>
+
+    <!-- Message Banner -->
+
+    <div id="authmessage"></div>
+
+    <!-- Settings -->
+
+    <div class="settingspage">
+
+        <!-- Sidebar -->
+
+        <aside class="settingssidebar">
+
+            <button
+                class="settingstab active"
+                id="accounttab">
+
+                👤
+                <span>Account</span>
+
+            </button>
+
+            <button
+                class="settingstab"
+                id="appearancetab">
+
+                🎨
+                <span>Appearance</span>
+
+            </button>
+
+        </aside>
+
+        <!-- Main Content -->
+
+        <main class="settingscontent">
+
+            <!-- Account -->
+
+            <section
+                id="accountpage"
+                class="settingssection">
+
+                <h1>Account</h1>
+
+                <div class="settingitem">
+
+                    <label>Username</label>
+
+                    <strong id="username">
+                        Loading...
+                    </strong>
+
+                </div>
+
+                <div class="settingitem">
+
+                    <label>Email</label>
+
+                    <strong id="email">
+                        Loading...
+                    </strong>
+
+                </div>
+
+                <hr>
+
+                <div class="settingsbuttons">
+
+                    <button
+                        class="button"
+                        id="changepassword">
+
+                        Change Password
+
+                    </button>
+
+                    <button
+                        class="button logoutbutton"
+                        id="logout">
+
+                        Logout
+
+                    </button>
+
+                    <button
+                        class="button deletebutton"
+                        id="deleteaccount">
+
+                        Delete Account
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- Appearance -->
+
+            <section
+                id="appearancepage"
+                class="settingssection"
+                style="display:none;">
+
+                <h1>Appearance</h1>
+
+                <p>
+
+                    Select your preferred theme.
+
+                </p>
+
+                <div class="settingsbuttons">
+
+                    <button
+                        class="button"
+                        id="lightmode">
+
+                        ☀ Light Mode
+
+                    </button>
+
+                    <button
+                        class="button"
+                        id="darkmode">
+
+                        🌙 Dark Mode
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- Change Password Popup -->
+
+    <div
+        class="popup"
+        id="passwordpopup">
+
+        <div class="popupcard">
+
+            <h2>
+
+                Change Password
+
+            </h2>
+
+            <p>
+
+                Current Password
+
+            </p>
+
+            <input
+                type="password"
+                id="currentpassword"
+                placeholder="Current password">
+
+            <p>
+
+                New Password
+
+            </p>
+
+            <input
+                type="password"
+                id="newpassword"
+                placeholder="New password">
+
+            <div class="popupbuttons">
+
+                <button
+                    class="button"
+                    id="confirmpassword">
+
+                    Change Password
+
+                </button>
+
+                <button
+                    class="button secondarybutton"
+                    id="closepasswordpopup">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Delete Popup -->
+
+    <div
+        class="popup"
+        id="deletepopup">
+
+        <div class="popupcard">
+
+            <h2>
+
+                Schedule Account Deletion
+
+            </h2>
+
+            <p>
+
+                Your account will not be deleted immediately.
+
+            </p>
+
+            <p>
+
+                It will be scheduled for deletion after
+                <strong>14 days</strong>.
+
+            </p>
+
+            <p>
+
+                Logging in before the deletion date will automatically cancel the scheduled deletion.
+
+            </p>
+
+            <div class="popupbuttons">
+
+                <button
+                    class="button deletebutton"
+                    id="confirmdelete">
+
+                    Schedule Deletion
+
+                </button>
+
+                <button
+                    class="button secondarybutton"
+                    id="closedeletepopup">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../script.js"></script>
+
+</body>
+
+</html>
