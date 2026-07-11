@@ -4,6 +4,65 @@
 
 let API_URL = "";
 
+// ======================================
+// Authentication / OAuth Messages
+// ======================================
+
+function showAuthMessage(message, isError = true){
+
+    const authMessage =
+        document.getElementById("authmessage");
+
+    if(!authMessage){
+
+        return;
+
+    }
+
+    authMessage.style.display = "flex";
+
+    authMessage.innerHTML = `
+
+        <svg width="22" height="22" viewBox="0 0 24 24">
+
+            <path
+                fill="${isError ? "#f4b400" : "#34c759"}"
+                d="M12 2L1 21h22L12 2z"
+            />
+
+            <text
+                x="12"
+                y="18"
+                text-anchor="middle"
+                font-size="14"
+                font-weight="bold"
+                fill="black">
+
+                !
+
+            </text>
+
+        </svg>
+
+        <span>${message}</span>
+
+    `;
+
+}
+
+function hideAuthMessage(){
+
+    const authMessage =
+        document.getElementById("authmessage");
+
+    if(authMessage){
+
+        authMessage.style.display = "none";
+
+    }
+
+}
+
 
 // Load API address from config.json
 
@@ -64,6 +123,17 @@ const showCreate = document.getElementById("accountcreation");
 const showLogin = document.getElementById("showloginform");
 
 const authMessage = document.getElementById("authmessage");
+const params = new URLSearchParams(
+    window.location.search
+);
+
+if(params.get("oauth")==="1"){
+
+    showAuthMessage(
+        "Login to proceed to continue installing the application."
+    );
+
+}
 
 
 
@@ -81,7 +151,7 @@ createForm.style.display = "none";
 // Messages
 // ======================================
 
-function showError(message){
+function showAuthMessage(message){
 
 
     authMessage.innerHTML = `
@@ -239,7 +309,7 @@ emailInput.addEventListener(
         catch(error){
 
 
-            showError(
+            showAuthMessage(
                 "Unable to connect to server."
             );
 
@@ -276,7 +346,7 @@ async ()=>{
 
     if(!password){
 
-        showError(
+        showAuthMessage(
             "Enter your password."
         );
 
@@ -325,15 +395,32 @@ async ()=>{
 
         if(data.success){
 
+    const oauthRedirect =
 
-            window.location.href="/";
+        sessionStorage.getItem(
+            "oauthRedirect"
+        );
 
+    if(oauthRedirect){
 
-        }
+        sessionStorage.removeItem(
+            "oauthRedirect"
+        );
+
+        window.location.href =
+            oauthRedirect;
+
+        return;
+
+    }
+
+    window.location.href="/";
+
+    }   
         else{
 
 
-            showError(
+            showAuthMessage(
                 "Wrong password."
             );
 
@@ -346,7 +433,7 @@ async ()=>{
     catch(error){
 
 
-        showError(
+        showAuthMessage(
             "Unable to login."
         );
 
@@ -388,7 +475,7 @@ async ()=>{
         !password
     ){
 
-        showError(
+        showAuthMessage(
             "Fill all required fields."
         );
 
@@ -443,15 +530,32 @@ async ()=>{
 
         if(data.success){
 
+    const oauthRedirect =
 
-            window.location.href="/";
+        sessionStorage.getItem(
+            "oauthRedirect"
+        );
 
+    if(oauthRedirect){
 
-        }
+        sessionStorage.removeItem(
+            "oauthRedirect"
+        );
+
+        window.location.href =
+            oauthRedirect;
+
+        return;
+
+    }
+
+    window.location.href="/";
+
+}
         else{
 
 
-            showError(
+            showAuthMessage(
                 data.message
             );
 
@@ -464,7 +568,7 @@ async ()=>{
     catch(error){
 
 
-        showError(
+        showAuthMessage(
             "Unable to create account."
         );
 
@@ -901,61 +1005,363 @@ loadSettingsConfig()
 
 
 }
-// ==============================
-// Schedule Account Deletion
-// ==============================
 
-router.post("/delete-account", auth, (req, res) => {
+// =====================================
+// OAuth Install Page
+// =====================================
 
-    const accounts = getAccounts();
+async function initializeOAuthPage() {
 
-    const user = accounts.find(account =>
-        account.email === req.user.email
-    );
+    if (!window.location.pathname.includes("/oauth/")) {
 
-    if (!user) {
-
-        return res.status(404).json({
-            success: false,
-            message: "Account not found."
-        });
+        return;
 
     }
 
-    // Already scheduled?
-    if (user.deletionScheduled) {
+    try {
 
-        return res.status(400).json({
-            success: false,
-            message: "Account is already scheduled for deletion."
-        });
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        const clientId =
+            params.get("client_id");
+
+        const redirectUri =
+            params.get("redirect_uri");
+
+        const scope =
+            params.get("scope");
+
+        const state =
+            params.get("state");
+
+        if (!clientId) {
+
+            showAuthMessage(
+                "Missing client_id.",
+                true
+            );
+
+            return;
+
+        }
+
+        const response = await fetch(
+
+            API_URL +
+
+            "/oauth/authorize?" +
+
+            new URLSearchParams({
+
+                client_id: clientId,
+                redirect_uri: redirectUri,
+                scope,
+                state
+
+            }),
+
+            {
+
+                credentials:"include"
+
+            }
+
+        );
+
+        const data =
+            await response.json();
+
+        // =====================
+        // Login Required
+        // =====================
+
+        if (data.loginRequired) {
+
+            sessionStorage.setItem(
+
+                "oauthRedirect",
+
+                window.location.href
+
+            );
+
+            window.location.href =
+
+                "../login/index.html?oauth=1";
+
+            return;
+
+        }
+
+        if (!data.success) {
+
+            showAuthMessage(
+
+                data.message,
+
+                true
+
+            );
+
+            return;
+
+        }
+
+        // =====================
+        // App Information
+        // =====================
+
+        const appName =
+
+            document.getElementById(
+                "appname"
+            );
+
+        const developer =
+
+            document.getElementById(
+                "developer"
+            );
+
+        const logo =
+
+            document.getElementById(
+                "applogo"
+            );
+
+        if (appName) {
+
+            appName.textContent =
+                data.application.name;
+
+        }
+
+        if (developer) {
+
+            developer.textContent =
+                data.application.developer;
+
+        }
+
+        if (
+
+            logo &&
+            data.application.logo
+
+        ) {
+
+            logo.src =
+                data.application.logo;
+
+        }
+
+        // =====================
+        // Permission List
+        // =====================
+
+        const permissionList =
+
+            document.getElementById(
+                "permissionlist"
+            );
+
+        if (permissionList) {
+
+            permissionList.innerHTML = "";
+
+            data.requestedPermissions.forEach(
+
+                permission => {
+
+                    const item =
+
+                        document.createElement(
+                            "div"
+                        );
+
+                    item.className =
+                        "permissionitem";
+
+                    item.innerHTML =
+
+                    `
+                    <input
+                        type="checkbox"
+                        class="oauthpermission"
+                        value="${permission}"
+                        checked
+                    >
+
+                    <div class="permissioninfo">
+
+                        <div class="permissiontitle">
+
+                            ${permission}
+
+                        </div>
+
+                    </div>
+                    `;
+
+                    permissionList.appendChild(
+                        item
+                    );
+
+                }
+
+            );
+
+        }
+
+        // =====================
+        // Install Button
+        // =====================
+
+        const installButton =
+
+            document.getElementById(
+                "installapp"
+            );
+
+        if (installButton) {
+
+            installButton.onclick =
+            async () => {
+
+                const scopes = [];
+
+                document
+
+                    .querySelectorAll(
+                        ".oauthpermission"
+                    )
+
+                    .forEach(
+
+                        checkbox => {
+
+                            if (
+                                checkbox.checked
+                            ) {
+
+                                scopes.push(
+                                    checkbox.value
+                                );
+
+                            }
+
+                        }
+
+                    );
+
+                const installResponse =
+
+                    await fetch(
+
+                        API_URL +
+
+                        "/oauth/authorize",
+
+                        {
+
+                            method:"POST",
+
+                            credentials:"include",
+
+                            headers:{
+
+                                "Content-Type":
+
+                                "application/json"
+
+                            },
+
+                            body:JSON.stringify({
+
+                                clientId,
+
+                                scopes,
+
+                                state
+
+                            })
+
+                        }
+
+                    );
+
+                const installData =
+
+                    await installResponse.json();
+
+                if (!installData.success) {
+
+                    showAuthMessage(
+
+                        installData.message,
+
+                        true
+
+                    );
+
+                    return;
+
+                }
+
+                window.location.href =
+                    installData.redirect;
+
+            };
+
+        }
+
+        // =====================
+        // Cancel Button
+        // =====================
+
+        const cancelButton =
+
+            document.getElementById(
+                "cancelinstall"
+            );
+
+        if (cancelButton) {
+
+            cancelButton.onclick =
+            () => {
+
+                history.back();
+
+            };
+
+        }
 
     }
 
-    // 14 days from now
-    const deletionDate = new Date();
+    catch (error) {
 
-    deletionDate.setDate(
-        deletionDate.getDate() + 14
-    );
+        console.error(error);
 
-    user.deletionScheduled = true;
+        showAuthMessage(
 
-    user.deletionDate = deletionDate.toISOString();
+            "Unable to load the application.",
 
-    saveAccounts(accounts);
+            true
 
-    res.json({
+        );
 
-        success: true,
+    }
 
-        message: "Your account has been scheduled for deletion.",
+}
 
-        deletionDate: user.deletionDate
+// =====================================
+// Start OAuth Page
+// =====================================
 
-    });
+initializeOAuthPage();
 
-});
 // Start
 
 loadConfig();
